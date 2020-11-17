@@ -11,14 +11,16 @@
     Trouvez une offre d'emploi proche de vous
     </div>
 
-<div class="container mt-3">
+<div class="container mt-3"> 
+
+
 {% for offre in offres %}
 <div class="card mt-2">
   <div class="card-body">
     <h5 class="card-title">{{ offre.title }}</h5>
     <h6>{{ offre.CodePostal }},  {{ offre.ville }}</h6>
     <p class="card-text">Type de contrat :    {{ offre.Contrat }}</p>
-    <p class="card-text">Durée du contrat :  offre.contrattypeid</p>
+    <p class="card-text">Contrat créé le : {{ offre.DateCreation | date('d/m/Y') }}, prend fin le {{ offre.FinMission | date('d/m/Y') }}</p>
     <a href="{{ offre.id }}" class="btn btn-primary">Voir l'offre</a>
   </div>
 </div>
