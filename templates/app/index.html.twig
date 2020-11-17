@@ -8,20 +8,27 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Yndeed ✅</h1>
-
-    Wsh la zone
+<div class="d-flex justify-content-center mt-3">
+    <img src="{{ asset('logo.png') }}" alt="logo"/>
 </div>
 
+<div class="d-flex justify-content-center">
+    Trouvez une offre d'emploi proche de vous
+    </div>
+
+<div class="container mt-3">
 {% for offre in offres %}
-<offre>
-    <h2>Nom de l'offre</h2>
-        <div class="content">
-        <p>blballfgelfle des lignes</p>
-        </div>
-        </offre>
+<div class="card mt-2">
+  <div class="card-body">
+    <h5 class="card-title">{{ offre.title }}</h5>
+    <h6>{{ offre.ville }}</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
 
 {% endfor %}
+
+</div>
 
 {% endblock %}

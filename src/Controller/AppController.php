@@ -15,6 +15,7 @@ class AppController extends AbstractController
      */
     public function index(): Response
     {
+
         $repo = $this->getDoctrine()->getRepository(Offres::class);
 
         $offres = $repo->findAll();
