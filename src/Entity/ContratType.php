@@ -80,4 +80,9 @@ class ContratType
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $this->title;
+    }
 }

@@ -175,11 +175,6 @@ class Offres
         return $this->contrat;
     }
 
-    public function __toString()
-    {
-        return $this->contrat_type;
-    }
-
     public function setContrat(?Contrat $contrat): self
     {
         $this->contrat = $contrat;

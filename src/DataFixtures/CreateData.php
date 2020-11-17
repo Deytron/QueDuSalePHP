@@ -36,7 +36,7 @@ class CreateData extends Fixture
             $contrat = $allContrats[$contratIndex];
 
             $offre = new Offres();
-            $offre->setTitle("Offre d'emploi n°$i")
+            $offre->setTitle($faker->jobTitle)
                 ->setDescription($faker->text)
                 ->setAdresse($faker->streetAddress)
                 ->setCodePostal($faker->postcode)
