@@ -16,9 +16,9 @@
 <div class="card mt-2">
   <div class="card-body">
     <h5 class="card-title">{{ offre.title }}</h5>
-    <h6>offre.code_postal,  {{ offre.ville }}</h6>
-    <p class="card-text">Type de contrat :  offre.contrat_type</p>
-    <p class="card-text">Durée du contrat :  offre.contrat_type_id</p>
+    <h6>{{ offre.CodePostal }},  {{ offre.ville }}</h6>
+    <p class="card-text">Type de contrat :    offre.contrat</p>
+    <p class="card-text">Durée du contrat :  offre.contrattypeid</p>
     <a href="{{ offre.id }}" class="btn btn-primary">Voir l'offre</a>
   </div>
 </div>
