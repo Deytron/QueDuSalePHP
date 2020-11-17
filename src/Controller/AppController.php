@@ -25,4 +25,19 @@ class AppController extends AbstractController
             'offres' => $offres
         ]);
     }
+
+    /**
+     * @Route("/{id}", name="offre")
+     */
+    public function show($id){
+    {
+        $repo = $this->getDoctrine()->getRepository(Offres::class);
+
+        $offre = $repo->find($id);
+
+        return $this->render('app/offre.html.twig', [
+            'offre' => $offre
+        ]);
+    }
+}
 }

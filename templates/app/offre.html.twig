@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre numéro id{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-center mt-3">
+    <img src="https://i.imgur.com/rmfm2Ai.png" width="400" alt="logo"/>
+</div>
+
+<div class="d-flex justify-content-center">
+    Trouvez une offre d'emploi proche de vous
+    </div>
+
+<div class="container mt-3">
+    <div class="card mt-2">
+    <div class="card-body">
+        <h3 class="card-title text-center mb-4">{{ offre.title }}</h3>
+        <h6>Localisation : {{ offre.adresse }}, offre.code_postal,  {{ offre.ville }}</h6>
+        <p class="card-text">Contrat :  offre.contrat_typt_id, offre.contrat_type</p>
+        <p class="card-text">Durée du contrat :  offre.contrat_type_id, termine le offre.fin_mission</p>
+        <p class="card-text">Offre créée le offre.date_creation (Mise à jour le offre.update_date)</p>
+        <p class="card-text mt-5">{{ offre.description }}</p>
+        <br>
+        <div class="text-center">
+        <a href="#" class="btn btn-primary">Postuler</a>
+        </div>
+        <div class="mt-5">
+        <a href="../" class"btn btn-primary">< Retour à la liste des offres</a>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

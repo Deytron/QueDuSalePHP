@@ -3,13 +3,8 @@
 {% block title %}Yndeed{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <div class="d-flex justify-content-center mt-3">
-    <img src="{{ asset('logo.png') }}" alt="logo"/>
+    <img src="https://i.imgur.com/rmfm2Ai.png" width="400" alt="logo"/>
 </div>
 
 <div class="d-flex justify-content-center">
@@ -21,9 +16,10 @@
 <div class="card mt-2">
   <div class="card-body">
     <h5 class="card-title">{{ offre.title }}</h5>
-    <h6>{{ offre.ville }}</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h6>offre.code_postal,  {{ offre.ville }}</h6>
+    <p class="card-text">Type de contrat :  offre.contrat_type</p>
+    <p class="card-text">Durée du contrat :  offre.contrat_type_id</p>
+    <a href="{{ offre.id }}" class="btn btn-primary">Voir l'offre</a>
   </div>
 </div>
 
