@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Offres;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
+use App\Form\OffreType;
 
 class AppController extends AbstractController
 {
@@ -36,15 +37,7 @@ class AppController extends AbstractController
             $offre = new Offres();
         }
 
-            $form = $this->createFormBuilder($offre)
-                         ->add('Title')
-                         ->add('Description')
-                         ->add('Adresse')
-                         ->add('code_postal')
-                         ->add('Ville')
-                         ->add('fin_mission')
-                         ->add('contrat')
-                         ->getForm();
+            $form = $this->createForm(OffreType::class, $offre);
         
             $form->handleRequest($request);
 

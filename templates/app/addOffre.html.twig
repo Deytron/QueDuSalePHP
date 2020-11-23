@@ -9,7 +9,7 @@
 <div class="container">
     <h1 class="text-center">Ajouter une offre</h1>
 
-    {{ form_start(formOffre) }}
+    {{ form_start(formOffre, {'attr': {'novalidate': 'novalidate'}}) }}
 
     {{ form_row(formOffre.Title, {'attr': { 'placeholder': "Titre de l'offre"}}) }}
     {{ form_row(formOffre.Description, {'attr': { 'placeholder': "Description de l'offre"}}) }}
@@ -18,6 +18,7 @@
     {{ form_row(formOffre.Ville, {'attr': { 'placeholder': "Ville d'emploi"}}) }}
     {{ form_row(formOffre.fin_mission, {'attr': { 'placeholder': "Date de fin"}}) }}
     {{ form_row(formOffre.contrat, {'attr': { 'placeholder': "Contrat"}}) }}
+    {# {{ form_row(formOffre.contrat_type, {'attr': { 'placeholder': "Type de contrat"}}) }} #}
 
     <button type="submit" class="btn btn-primary">Envoyer l'offre</button>
 
