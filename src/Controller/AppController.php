@@ -29,9 +29,12 @@ class AppController extends AbstractController
 
         /**
      * @Route("/addOffre", name="addOffre")
+     * @Route("/editOffre/{id}", name="editOffre")
      */
-    public function addOffre(HttpFoundationRequest $request, EntityManagerInterface $manager) {
+    public function addOffre(Offres $offre = null, HttpFoundationRequest $request, EntityManagerInterface $manager) {
+        if (!$offre) {
             $offre = new Offres();
+        }
 
             $form = $this->createFormBuilder($offre)
                          ->add('Title')
@@ -46,8 +49,10 @@ class AppController extends AbstractController
             $form->handleRequest($request);
 
             if($form->isSubmitted() && $form->isValid()) {
-                $offre->setDateCreation(new \DateTime());
-                $offre->setUpdateDate(new \DateTime());
+                if(!$offre->getId()) {
+                    $offre->setDateCreation(new \DateTime());
+                    $offre->setUpdateDate(new \DateTime());
+                }
 
                 $manager->persist($offre);
                 $manager->flush();
