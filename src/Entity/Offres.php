@@ -65,7 +65,7 @@ class Offres
 
     /**
      * @ORM\ManyToOne(targetEntity=ContratType::class, inversedBy="offres")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $contrat_type;
 

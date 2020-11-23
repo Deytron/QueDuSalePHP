@@ -5,8 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Contrat;
 use App\Entity\Offres;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 
 class AppController extends AbstractController
 {
@@ -23,6 +24,39 @@ class AppController extends AbstractController
         return $this->render('app/index.html.twig', [
             'controller_name' => 'AppController',
             'offres' => $offres
+        ]);
+    }
+
+        /**
+     * @Route("/addOffre", name="addOffre")
+     */
+    public function addOffre(HttpFoundationRequest $request, EntityManagerInterface $manager) {
+            $offre = new Offres();
+
+            $form = $this->createFormBuilder($offre)
+                         ->add('Title')
+                         ->add('Description')
+                         ->add('Adresse')
+                         ->add('code_postal')
+                         ->add('Ville')
+                         ->add('fin_mission')
+                         ->add('contrat')
+                         ->getForm();
+        
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid()) {
+                $offre->setDateCreation(new \DateTime());
+                $offre->setUpdateDate(new \DateTime());
+
+                $manager->persist($offre);
+                $manager->flush();
+
+                return $this->redirectToRoute('offre', ['id' => $offre->getId()]);
+            }
+ 
+        return $this->render('app/addOffre.html.twig', [
+            'formOffre' => $form->createView()
         ]);
     }
 

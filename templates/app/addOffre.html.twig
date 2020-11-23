@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% form_theme formOffre 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Ajouter une offre{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-center">Ajouter une offre</h1>
+
+    {{ form_start(formOffre) }}
+
+    {{ form_row(formOffre.Title, {'attr': { 'placeholder': "Titre de l'offre"}}) }}
+    {{ form_row(formOffre.Description, {'attr': { 'placeholder': "Description de l'offre"}}) }}
+    {{ form_row(formOffre.Adresse, {'attr': { 'placeholder': "Adresse d'emploi"}}) }}
+    {{ form_row(formOffre.code_postal, {'attr': { 'placeholder': "Code postal"}}) }}
+    {{ form_row(formOffre.Ville, {'attr': { 'placeholder': "Ville d'emploi"}}) }}
+    {{ form_row(formOffre.fin_mission, {'attr': { 'placeholder': "Date de fin"}}) }}
+    {{ form_row(formOffre.contrat, {'attr': { 'placeholder': "Contrat"}}) }}
+
+    <button type="submit" class="btn btn-primary">Envoyer l'offre</button>
+
+    {{ form_end(formOffre) }}
+</div>
+
+{% endblock %}
