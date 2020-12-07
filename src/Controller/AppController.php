@@ -28,7 +28,7 @@ class AppController extends AbstractController
         ]);
     }
 
-        /**
+    /**
      * @Route("/addOffre", name="addOffre")
      * @Route("/editOffre/{id}", name="editOffre")
      */
@@ -59,7 +59,7 @@ class AppController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="offre")
+     * @Route("/offre/{id}", name="offre")
      */
     public function show($id){
     {

@@ -20,7 +20,7 @@
     <h6>{{ offre.CodePostal }},  {{ offre.ville }}</h6>
     <p class="card-text">Type de contrat :    {{ offre.Contrat }}</p>
     <p class="card-text">Contrat créé le : {{ offre.DateCreation | date('d/m/Y') }}, prend fin le {{ offre.FinMission | date('d/m/Y') }}</p>
-    <a href="{{ offre.id }}" class="btn btn-primary">Voir l'offre</a>
+    <a href="offre/{{ offre.id }}" class="btn btn-primary">Voir l'offre</a>
   </div>
 </div>
 
