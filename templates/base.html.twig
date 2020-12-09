@@ -33,8 +33,14 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{{ path('register')}}">S'inscrire</a>
+      {% if not app.user %}
+        <a class="nav-link" href="{{ path('login')}}">Se connecter</a>
       </li>
+      {% else %}
+            <li class="nav-item">
+        <a class="nav-link" href="{{ path('logout')}}">Déconnexion</a>
+      </li>
+      {% endif %}
 	  <li class="nav-item">
         <a class="nav-link" href="{{ path('addOffre')}}" >Ajouter une offre</a>
       </li>
