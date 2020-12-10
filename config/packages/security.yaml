@@ -36,3 +36,4 @@ security:
     - { path: ^/admin, roles: ROLE_ADMIN }
     - { path: ^/editOffre, roles: ROLE_USER }
     - { path: ^/addOffre, roles: ROLE_USER }
+    - { path: ^/manageOffre, roles: ROLE_USER }

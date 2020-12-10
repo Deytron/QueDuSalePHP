@@ -21,8 +21,12 @@
         <p class="card-text mt-5">{{ offre.description }}</p>
         <br>
         <div class="text-center">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}   
         <a href="#" class="btn btn-primary">Postuler</a>
+        {% if app.user.id == offre.creatorId %}
         <a href="/editOffre/{{ offre.id }}" class="btn btn-success">Modifier l'offre</a>
+        {% endif %}
+        {% endif %}
         </div>
         <div class="mt-5">
         <a href="../" class"btn btn-primary">< Retour à la liste des offres</a>

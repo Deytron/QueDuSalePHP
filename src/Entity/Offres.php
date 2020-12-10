@@ -69,6 +69,12 @@ class Offres
      */
     private $contrat_type;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $creator_id;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -190,6 +196,18 @@ class Offres
     public function setContratType(?ContratType $contrat_type): self
     {
         $this->contrat_type = $contrat_type;
+
+        return $this;
+    }
+
+    public function getCreatorId(): ?int
+    {
+        return $this->creator_id;
+    }
+
+    public function setCreatorId(int $creator_id): self
+    {
+        $this->creator_id = $creator_id;
 
         return $this;
     }

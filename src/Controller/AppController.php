@@ -17,9 +17,6 @@ class AppController extends AbstractController
      */
     public function index(): Response
     {
-
-        $user = $this->getUser();
-
         $repo = $this->getDoctrine()->getRepository(Offres::class);
 
         $offres = $repo->findAll();
@@ -27,7 +24,6 @@ class AppController extends AbstractController
         return $this->render('app/index.html.twig', [
             'controller_name' => 'AppController',
             'offres' => $offres,
-            'userShow' => $user
         ]);
     }
 
@@ -41,6 +37,8 @@ class AppController extends AbstractController
         }
 
             $form = $this->createForm(OffreType::class, $offre);
+
+            $userid = $this->getUser()->getId();
         
             $form->handleRequest($request);
 
@@ -48,6 +46,7 @@ class AppController extends AbstractController
                 if(!$offre->getId()) {
                     $offre->setDateCreation(new \DateTime());
                     $offre->setUpdateDate(new \DateTime());
+                    $offre->setCreatorId($userid);
                 }
 
                 $manager->persist($offre);
@@ -75,4 +74,23 @@ class AppController extends AbstractController
         ]);
     }
 }
+
+     /**
+     * @Route("/manageOffre", name="manageOffre")
+     */
+    public function manageOffre() {
+    {
+        $repo = $this->getDoctrine()->getRepository(Offres::class);
+
+        $userid = $this->getUser()->getId();
+
+        $offres = $repo->findBy( array('creator_id' => $userid));
+
+        return $this->render('app/index.html.twig', [
+            'controller_name' => 'AppController',
+            'offres' => $offres,
+        ]);
+    }
+}
+
 }
