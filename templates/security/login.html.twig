@@ -7,6 +7,10 @@
         <h2 class="text-center mt-3 mb-3">Connexion</h2>
 
         <form action="{{ path('login') }}" method="post">
+          {% if error %}
+            <div class="alert alert-danger">Adresse E-mail ou mot de passe invalide</div>
+        {% endif %}
+
         <div class="form-group w-50 mx-auto">
             <input placeholder="Adresse E-mail" required type="text" class="form-control" name="_username"> 
         </div>

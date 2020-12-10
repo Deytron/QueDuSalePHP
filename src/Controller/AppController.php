@@ -18,13 +18,16 @@ class AppController extends AbstractController
     public function index(): Response
     {
 
+        $user = $this->getUser();
+
         $repo = $this->getDoctrine()->getRepository(Offres::class);
 
         $offres = $repo->findAll();
 
         return $this->render('app/index.html.twig', [
             'controller_name' => 'AppController',
-            'offres' => $offres
+            'offres' => $offres,
+            'userShow' => $user
         ]);
     }
 

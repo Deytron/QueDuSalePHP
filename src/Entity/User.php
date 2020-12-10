@@ -23,6 +23,8 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+    
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -131,8 +133,12 @@ class User implements UserInterface
         
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
-        return ['ROLE_USER'];
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 }
