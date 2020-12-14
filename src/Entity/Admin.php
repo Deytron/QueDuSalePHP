@@ -24,8 +24,6 @@ class Admin implements UserInterface
      */
     private $id;
 
-    private $roles = [];
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -56,6 +54,13 @@ class Admin implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $lastName;
+
+    private $roles;
+
+    public function __construct()
+    {
+        $this->roles = array('ROLE_ADMIN');
+    }
 
     public function getId(): ?int
     {
@@ -132,11 +137,8 @@ class Admin implements UserInterface
         return $this;
     }
 
-    public function getRoles(): array
+    public function getRoles()
     {
-        $roles = $this->roles;
-        $roles[] = 'ROLE_ADMIN';
-
-        return array_unique($roles);
+        return $this->roles;
     }
 }
