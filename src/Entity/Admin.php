@@ -55,7 +55,7 @@ class Admin implements UserInterface
      */
     private $lastName;
 
-    private $roles;
+    private $roles = [];
 
     public function __construct()
     {
@@ -137,8 +137,11 @@ class Admin implements UserInterface
         return $this;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        $roles[] = 'ROLE_ADMIN';
+
+        return array_unique($roles);
     }
 }

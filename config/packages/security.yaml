@@ -14,13 +14,15 @@ security:
       entity: { class: App\Entity\User, property: email }
     admin_database:
       entity: { class: App\Entity\Admin, property: email }
+
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
-    main:
+    admin:
+      pattern: ^/secretAdminLogin
+      provider: admin_database
       anonymous: lazy
-      provider: in_database
 
       form_login:
         login_path: login
@@ -29,14 +31,13 @@ security:
       logout:
         path: logout
         target: app
-    admin:
-      pattern: ^/secretAdminLogin
-      provider: admin_database
+    main:
       anonymous: lazy
+      provider: in_database
 
       form_login:
-        login_path: secretAdminLogin
-        check_path: secretAdminLogin
+        login_path: login
+        check_path: login
 
       logout:
         path: logout
