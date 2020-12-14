@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Form\RegisterType;
+use App\Form\AdminType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\User;
+use App\Entity\Admin;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -16,14 +18,35 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/register", name="register")
+     * @Route("/secretAdminRegister", name="secretAdminRegister")
      */
     public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) {
         $user = new User();
+        $admin = new Admin();
 
+        $getRoute = $request->attributes->get('_route');
 
-        $form = $this->createForm(RegisterType::class, $user);
-
+        if($getRoute == 'secretAdminRegister') {
+        $form = $this->createForm(AdminType::class, $admin);
         $form->handleRequest($request);
+
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $hash = $encoder->encodePassword($user, $admin->getPassword());
+
+            $admin->setPassword($hash);
+
+            $manager->persist($admin);
+            $manager->flush();
+
+            return $this->redirectToRoute('secretAdminLogin');
+        }
+        return $this->render('security/register.html.twig', ['formRegister' => $form->createView()]);
+
+        } else {
+        $form = $this->createForm(RegisterType::class, $user);
+        $form->handleRequest($request);
+        
 
         if($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getPassword());
@@ -35,12 +58,13 @@ class SecurityController extends AbstractController
 
             return $this->redirectToRoute('login');
         }
-
         return $this->render('security/register.html.twig', ['formRegister' => $form->createView()]);
+        }
     }
 
     /**
      * @Route("/login", name="login")
+     * @Route("/secretAdminLogin", name="secretAdminLogin")
      */
     public function login(AuthenticationUtils $authenticationUtils) {
 

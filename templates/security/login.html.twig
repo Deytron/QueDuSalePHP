@@ -20,7 +20,9 @@
 
         <div class="form-group text-center">
             <button type="submit" class="btn btn-primary">Se connecter</button>
+            {% if app.request.get('_route') == 'login' %}
             <a href="{{ path('register')}}" class="btn btn-success">S'inscrire</a>
+            {% endif %}
         </button>
     </div>
 {% endblock %}

@@ -77,6 +77,7 @@ class AppController extends AbstractController
 
      /**
      * @Route("/manageOffre", name="manageOffre")
+     * @Route("/admin/manageOffre", name="manageOffreAdmin")
      */
     public function manageOffre() {
     {
@@ -86,9 +87,12 @@ class AppController extends AbstractController
 
         $offres = $repo->findBy( array('creator_id' => $userid));
 
+        $offresAll = $repo->findAll();
+
         return $this->render('app/index.html.twig', [
             'controller_name' => 'AppController',
             'offres' => $offres,
+            'offresAll' => $offresAll
         ]);
     }
 }
